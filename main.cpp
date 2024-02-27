@@ -15,8 +15,9 @@ int main() {
     TestMessage * testMessage_1 = new TestMessage(payload_1);
     TestMessage * testMessage_2 = new TestMessage(payload_2);
 
-    fa->tell("SecondActor", testMessage_1);
-    sa->tell("FirstActor", testMessage_2);
+    fa->tell<TestMessage>("SecondActor", testMessage_1);
+    sa->tell<TestMessage>("FirstActor", testMessage_2);
+
 
     while(1){
 //        std::cout<<testMessage_1->payload<<std::endl;

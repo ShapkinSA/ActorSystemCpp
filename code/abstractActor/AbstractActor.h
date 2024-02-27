@@ -28,9 +28,18 @@ public:
     std::string name;
     void pushTask(const std::shared_ptr<DataExchanger>&dataExchanger);
     void popTask();
-    void tell(const std::string &receiver, const MessageBox *messageBox);
+
+//    void tell(const std::string &receiver, const MessageBox *& messageBox);
+
+    template<typename T, typename std::enable_if<std::is_base_of<MessageBox, T>::value>::type * = nullptr>
+    void tell(const std::string &receiver, T *& messageBox) {
+        actorSystem->pushTask(std::make_shared<DataExchanger>(name, receiver, dynamic_cast<MessageBox*>(messageBox)));
+        messageBox = nullptr;
+    }
+
+
     std::map<const std::type_index,  std::function<void(const std::string &, const MessageBox *)>> callbackMap;
-    void setActorSystem(ActorSystem * actorSystem);
+    void setActorSystem(ActorSystem * actorSystemPtr);
 private:
     ActorSystem *actorSystem;
     std::queue<std::shared_ptr<DataExchanger>> actorRequests;

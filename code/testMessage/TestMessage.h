@@ -15,6 +15,7 @@ public:
     std::string payload;
     ~TestMessage();
     TestMessage(const TestMessage &testMessage);
+//    TestMessage(TestMessage &&testMessage);
 };
 
 

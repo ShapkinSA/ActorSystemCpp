@@ -3,9 +3,6 @@
 //
 
 #include "AbstractActor.h"
-#include "code/testMessage/TestMessage.h"
-
-#include <utility>
 
 AbstractActor::AbstractActor(std::string name) : name(std::move(name)) {
     traceQueue();
@@ -39,10 +36,11 @@ void AbstractActor::popTask() {
     actorRequests.pop();
 }
 
-void AbstractActor::tell(const std::string &receiver, const MessageBox *messageBox) {
-    actorSystem->pushTask(std::make_shared<DataExchanger>(name, receiver, messageBox));
-}
+//void AbstractActor::tell(const std::string &receiver, const MessageBox * &messageBox) {
+//    actorSystem->pushTask(std::make_shared<DataExchanger>(name, receiver, messageBox));
+//    messageBox = nullptr;
+//}
 
-void AbstractActor::setActorSystem(ActorSystem *actorSystem) {
-    this->actorSystem = actorSystem;
+void AbstractActor::setActorSystem(ActorSystem *actorSystemPtr) {
+    actorSystem = actorSystemPtr;
 }

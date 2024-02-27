@@ -19,3 +19,7 @@ TestMessage::TestMessage(const TestMessage &testMessage) {
 TestMessage::~TestMessage() {
     std::cout<<"DELETE TestMessage with content "<<payload<<std::endl;
 }
+
+//TestMessage::TestMessage(TestMessage &&testMessage) {
+//    int gf = 2;
+//}
