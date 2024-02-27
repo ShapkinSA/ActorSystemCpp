@@ -9,8 +9,6 @@
 
 AbstractActor::AbstractActor(std::string name) : name(std::move(name)) {
     traceQueue();
-
-
 }
 
 void AbstractActor::traceQueue() {
@@ -34,13 +32,17 @@ void AbstractActor::traceQueue() {
 }
 
 void AbstractActor::pushTask(const std::shared_ptr<DataExchanger>&dataExchanger) {
-    std::mutex m_mutex;
-    std::lock_guard<std::mutex> lock(m_mutex);
     actorRequests.push(dataExchanger);
 }
 
 void AbstractActor::popTask() {
-    std::mutex m_mutex;
-    std::lock_guard<std::mutex> lock(m_mutex);
     actorRequests.pop();
+}
+
+void AbstractActor::tell(const std::string &receiver, const MessageBox *messageBox) {
+    actorSystem->pushTask(std::make_shared<DataExchanger>(name, receiver, messageBox));
+}
+
+void AbstractActor::setActorSystem(ActorSystem *actorSystem) {
+    this->actorSystem = actorSystem;
 }

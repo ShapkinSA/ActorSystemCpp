@@ -24,48 +24,21 @@ class ActorSystem {
 public:
     ActorSystem();
 
-//    template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *, typename... Arguments>
-//    T* createActor(const std::string& name, Arguments...args);
-
-//    template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *>
-
-//    template<typename T, typename std::enable_if<std::is_base_of<AbstractActor, T>::value>::type * = nullptr>
-//    T *createActor(const std::string &name) {
-//        T *t = new T(name);
-//        t->actorSystem = this;
-//        getActors()[name] = std::make_shared<AbstractActor>(*t);
-//        return t;
-//    }
-
-
     template<typename T, typename std::enable_if<std::is_base_of<AbstractActor, T>::value>::type * = nullptr, typename... Arguments>
     T *createActor(const std::string &name, Arguments ... args) {
         T *t = new T(name, args...);
-        t->actorSystem = this;
+        t->setActorSystem(this);
         getActors()[name] = t;
         return t;
     }
 
-
-//    template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *>
     std::map<std::string, AbstractActor*> &getActors();
-
-
-    mutable std::mutex m_mutex;
-
     void pushTask(const std::shared_ptr<DataExchanger>&dataExchanger);
     void popTask();
 
 private:
-
-//    template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *>
-    inline static std::map<std::string, AbstractActor*> actors;
-
-//    template <typename T>
-//    inline static std::queue<DataExchanger<T>> tasks;
-
-    inline static std::queue<std::shared_ptr<DataExchanger>> tasks;
-
+    std::map<std::string, AbstractActor*> actors;
+    std::queue<std::shared_ptr<DataExchanger>> tasks;
     void traceQueue();
 };
 

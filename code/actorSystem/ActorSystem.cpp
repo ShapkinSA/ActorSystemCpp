@@ -8,10 +8,7 @@ std::map<std::string, AbstractActor*> &ActorSystem::getActors() {
     return actors;
 }
 
-
-
 void ActorSystem::popTask() {
-//    std::lock_guard<std::mutex> lock(m_mutex);
     tasks.pop();
 }
 
@@ -34,15 +31,6 @@ void ActorSystem::traceQueue() {
     t.detach();
 }
 
-
-
-
-//AbstractActor* ActorSystem<T>::createActor(const std::string &name) {
-//    getActors()[name] = std::make_shared<AbstractActor>(name);
-//    getActors()[name]->actorSystem = this;
-//    return getActors()[name].get();
-//}
-
 ActorSystem::ActorSystem() {
     traceQueue();
 }
@@ -50,35 +38,3 @@ ActorSystem::ActorSystem() {
 void ActorSystem::pushTask(const std::shared_ptr<DataExchanger>&dataExchanger) {
     tasks.push(dataExchanger);
 }
-
-
-
-//template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *, typename... Arguments>
-//T *ActorSystem::createActor(const std::string &name, Arguments...args) {
-//    T * t = new T(name);
-//    t->actorSystem = this;
-//    getActors()[name] = std::make_shared<AbstractActor>(t);
-//    return t;
-//}
-
-
-
-//template<typename T, std::enable_if<std::is_base_of<AbstractActor, T>::value>::type *>
-//template<typename T, typename std::enable_if<std::is_base_of<AbstractActor, T>::value>::type* = nullptr>
-//T *ActorSystem::createActor(const std::string &name) {
-//    T * t = new T(name);
-//    t->actorSystem = this;
-//    getActors()[name] = std::make_shared<AbstractActor>(t);
-//    return t;
-//}
-
-
-
-
-//template<typename T, typename std::enable_if<std::is_base_of<AbstractActor, T>::value>::type* = nullptr>
-//T *ActorSystem::createActor(const std::string &name) {
-//    getActors()[name] = std::make_shared<AbstractActor>(name);
-//    getActors()[name]->actorSystem = this;
-//    return getActors()[name].get();
-//}
-

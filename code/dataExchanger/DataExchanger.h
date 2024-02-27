@@ -15,16 +15,13 @@
 class DataExchanger {
 public:
 
-    DataExchanger(std::string sender, std::string receiver, MessageBox* messageBox);
+    DataExchanger(std::string sender, std::string receiver, const MessageBox* messageBox);
     ~DataExchanger();
 
 public:
     std::string sender;
     std::string receiver;
-    MessageBox *messageBox = nullptr;
+    const MessageBox *messageBox = nullptr;
 };
-
-
-
 
 #endif //ACTORSYSTEM_DATAEXCHANGER_H

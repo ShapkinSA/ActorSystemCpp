@@ -1,4 +1,3 @@
-#include <iostream>
 #include "code/code.h"
 #include "code/testMessage/TestMessage.h"
 
@@ -16,10 +15,9 @@ int main() {
     TestMessage * testMessage_1 = new TestMessage(payload_1);
     TestMessage * testMessage_2 = new TestMessage(payload_2);
 
-    fa->tell<TestMessage>("SecondActor", *testMessage_1);
-    sa->tell<TestMessage>("FirstActor", *testMessage_2);
+    fa->tell("SecondActor", testMessage_1);
+    sa->tell("FirstActor", testMessage_2);
 
-//    testMessage_1->payload = "gtfdd";
     while(1){
 //        std::cout<<testMessage_1->payload<<std::endl;
 //        std::this_thread::sleep_for(std::chrono::milliseconds(1000));

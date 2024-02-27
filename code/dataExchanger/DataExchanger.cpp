@@ -7,7 +7,7 @@
 #include <utility>
 #include <iostream>
 
-DataExchanger::DataExchanger(std::string  sender, std::string  receiver, MessageBox *messageBox) : sender(std::move(sender)), receiver(std::move(receiver)){
+DataExchanger::DataExchanger(std::string  sender, std::string  receiver, const MessageBox *messageBox) : sender(std::move(sender)), receiver(std::move(receiver)){
     this->messageBox = messageBox;
 }
 
