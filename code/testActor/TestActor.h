@@ -17,7 +17,7 @@ private:
 
 public:
     TestActor(const std::string &name, int varInt, double varDouble);
-    void callback1(const std::string & sender, const MessageBox *mb);
+    void callback1(const std::string & sender, const TestMessage *mb);
 };
 
 

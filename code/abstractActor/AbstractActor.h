@@ -15,7 +15,8 @@
 #include <utility>
 #include "code/dataExchanger/DataExchanger.h"
 
-#define setCallback(type,function) (callbackMap[typeid(type)] = [this](const std::string & sender,  const MessageBox *mb){function(sender,mb);})
+//#define setCallback(type,function) (callbackMap[typeid(type)] = [this](const std::string & sender,  const MessageBox *mb){ function(sender,mb);}  )
+#define setCallback(type,function) (callbackMap[typeid(type)] = [this](const std::string & sender,  const MessageBox *mb){ function(sender,dynamic_cast<const type*>(mb));}  )
 
 class ActorSystem;
 

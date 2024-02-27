@@ -9,7 +9,6 @@ TestActor::TestActor(const std::string &name, int varInt, double varDouble) : Ab
     setCallback(TestMessage, callback1);
 }
 
-void TestActor::callback1(const std::string & sender, const MessageBox *mb) {
-    auto box = dynamic_cast<const TestMessage*>(mb);
-    log_info("({}) receive testMessage from {}. Callback1. Payload is {}", this->name, sender, box->payload);
+void TestActor::callback1(const std::string & sender, const TestMessage *mb) {
+    log_info("({}) receive testMessage from {}. Callback1. Payload is {}", this->name, sender, mb->payload);
 }
