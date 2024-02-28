@@ -7,7 +7,7 @@
 
 
 #include <string>
-#include "code/messageBox/MessageBox.h"
+#include "submodules/ActorSystemLibCpp/ActorSystemLibCpp.h"
 
 class TestMessage :  public MessageBox{
 public:

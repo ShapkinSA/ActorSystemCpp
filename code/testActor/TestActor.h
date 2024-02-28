@@ -6,7 +6,7 @@
 #define ACTORSYSTEM_TESTACTOR_H
 
 
-#include "code/abstractActor/AbstractActor.h"
+#include "submodules/ActorSystemLibCpp/ActorSystemLibCpp.h"
 #include "code/testMessage/TestMessage.h"
 
 class TestActor : public AbstractActor{
