@@ -13,7 +13,7 @@ PingPongActor::PingPongActor(const std::string &name) : AbstractActor(name) {
 void PingPongActor::receivePing(const std::string &sender, const PingMessage *mb) {
     log_info("({}) receive pingMessage from {}. Payload is {}", this->name, sender, mb->payload);
     MessageBox * pongMessage = new PongMessage("Pong from FirstActor");
-    tell(this->name == "FirstActor" ? "SecondActor" : "FirstActor", pongMessage);
+    tell(sender, pongMessage);
 }
 
 void PingPongActor::receivePong(const std::string &sender, const PongMessage *mb) {

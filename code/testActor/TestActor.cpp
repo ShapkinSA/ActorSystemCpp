@@ -12,3 +12,7 @@ TestActor::TestActor(const std::string &name, int varInt, double varDouble) : Ab
 void TestActor::callback1(const std::string & sender, const TestMessage *mb) {
     log_info("({}) receive testMessage from {}. Callback1. Payload is {}", this->name, sender, mb->payload);
 }
+
+void TestActor::preStart() {
+    log_info("({}) prestart",this->name);
+}

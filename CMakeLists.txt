@@ -13,10 +13,11 @@ BUILD_LIBRARY_FROM_OWN_CODE("code" "code")
 BUILD_LIBRARY_FROM_OWN_CODE("ActorSystemLibCpp" "submodules/ActorSystemLibCpp")
 
 
-add_executable(main main.cpp
-        code/pingPongActor/PingPongActor.cpp
-        code/pingPongActor/PingPongActor.h)
+add_executable(main main.cpp)
 target_link_libraries(main code ActorSystemLibCpp log4cpp "${PROJECT_SOURCE_DIR}/libs/fmt/libfmt.a")
 
 add_executable(pingPong pingPong.cpp)
 target_link_libraries(pingPong code ActorSystemLibCpp log4cpp "${PROJECT_SOURCE_DIR}/libs/fmt/libfmt.a")
+
+add_executable(multicastSending multicastSending.cpp)
+target_link_libraries(multicastSending code ActorSystemLibCpp log4cpp "${PROJECT_SOURCE_DIR}/libs/fmt/libfmt.a")
